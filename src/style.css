@@ -1,0 +1,208 @@
+/* ============================================================
+   全局样式：整个学习项目里所有页面共用的一套基础样式
+   你不需要一开始就看懂它。第 12 章会讲 <style scoped> 和 CSS 变量。
+   ============================================================ */
+
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --border: #e3e6eb;
+  --text: #2f3542;
+  --text-muted: #767f8c;
+  --heading: #14181f;
+  --brand: #10a37f;
+  --brand-soft: #e8f7f2;
+  --code-bg: #f2f4f7;
+  --warn-bg: #fff8e6;
+  --warn-border: #f0d18a;
+  --radius: 10px;
+  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --sans: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 15px/1.7 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+}
+
+a { color: var(--brand); }
+
+/* ---------- 页面骨架 ---------- */
+#app { min-height: 100vh; }
+
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 232px;
+  flex: 0 0 232px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0 8px;
+  margin: 4px 0 10px;
+}
+
+.sidebar nav { display: flex; flex-direction: column; gap: 2px; }
+
+.sidebar a {
+  display: block;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13.5px;
+}
+
+.sidebar a:hover { background: var(--code-bg); }
+.sidebar a.router-link-active { background: var(--brand-soft); color: var(--brand); font-weight: 600; }
+
+.main { flex: 1; min-width: 0; }
+.content { max-width: 940px; padding: 32px 40px 80px; }
+
+/* ---------- 标题 ---------- */
+.page-title {
+  font-size: 26px;
+  color: var(--heading);
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.page-desc {
+  color: var(--text-muted);
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+.content h2 {
+  font-size: 19px;
+  color: var(--heading);
+  margin: 32px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.content h3 { font-size: 16px; color: var(--heading); margin: 22px 0 8px; }
+.content p { margin: 10px 0; }
+.content ul, .content ol { padding-left: 22px; margin: 10px 0; }
+.content li { margin: 5px 0; }
+
+/* ---------- 卡片 / 提示 ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 14px 0;
+}
+
+.tip {
+  background: var(--brand-soft);
+  border-left: 3px solid var(--brand);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+.warn {
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn-border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+/* ---------- 演示区 ---------- */
+.demo {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 12px 0;
+  background: var(--surface);
+}
+
+.demo-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* ---------- 按钮 / 表单 ---------- */
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover { opacity: 0.88; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
+
+input, select, textarea {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus { border-color: var(--brand); }
+
+/* ---------- 代码 ---------- */
+code {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #c0392b;
+}
+
+pre {
+  background: #1f2430;
+  color: #e6e6e6;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 12px 0;
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: 13px; }
+
+/* ---------- 表格 ---------- */
+table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px; }
+th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+th { background: var(--code-bg); font-weight: 600; color: var(--heading); }
+
+/* ---------- 小工具 ---------- */
+.muted { color: var(--text-muted); font-size: 13px; }
+.mono { font-family: var(--mono); }
+.big { font-size: 30px; font-weight: 700; color: var(--brand); font-family: var(--mono); }

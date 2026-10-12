@@ -1,6 +1,6 @@
 // ============================================================
-// src/api/mock.js —— 本地「假接口」
-//
+// src/api/mock.js —— 本地「假接口」s's's
+//sss
 // 为什么要造假接口？
 //   1. 学习阶段还没有后端，但「等一会儿数据才回来」这件事必须练；
 //   2. 真去请求外部网站会受跨域、网络、接口随时改等影响，学习成本太高；
@@ -15,19 +15,19 @@
 // 一、假数据：假装这是数据库里已经存好的一批待办
 // ------------------------------------------------------------
 const TODO_DATA = [
-  { id: 1, title: '背 20 个英语单词', done: true },
-  { id: 2, title: '把第 11 章的笔记看一遍', done: false },
-  { id: 3, title: '写一个自己的小练习页面', done: false },
-  { id: 4, title: '给代码加上中文注释', done: true },
-  { id: 5, title: '复习 Props 和 Emits 的区别', done: false },
-]
+  { id: 1, title: "背 20 个英语单词", done: true },
+  { id: 2, title: "把第 11 章的笔记看一遍", done: false },
+  { id: 3, title: "写一个自己的小练习页面", done: false },
+  { id: 4, title: "给代码加上中文注释", done: true },
+  { id: 5, title: "复习 Props 和 Emits 的区别", done: false },
+];
 
 // 假装这是「用户表」
 const USER_DATA = {
-  1: { id: 1, name: '小明', age: 18, city: '杭州' },
-  2: { id: 2, name: '小红', age: 20, city: '成都' },
-  3: { id: 3, name: '小刚', age: 22, city: '北京' },
-}
+  1: { id: 1, name: "小明", age: 18, city: "杭州" },
+  2: { id: 2, name: "小红", age: 20, city: "成都" },
+  3: { id: 3, name: "小刚", age: 22, city: "北京" },
+};
 
 // ------------------------------------------------------------
 // 二、查待办列表
@@ -41,16 +41,16 @@ export function fetchTodos({ fail = false, delay = 800 } = {}) {
     setTimeout(() => {
       if (fail) {
         // reject 表示这次请求失败了，外面用 try/catch 或 .catch() 接住
-        reject(new Error('服务器开小差了（这是本地模拟出来的错误）'))
-        return // 失败就别再往下走了
+        reject(new Error("服务器开小差了（这是本地模拟出来的错误）"));
+        return; // 失败就别再往下走了
       }
       // 返回一份「副本」：用 map + 展开运算符逐个复制
       // 为什么不直接返回 TODO_DATA？
       //   如果直接把原数组给别人，别人一改就把「数据库」也改了，
       //   下次请求拿到的就是被改过的数据，很容易把人绕晕。
-      resolve(TODO_DATA.map((item) => ({ ...item })))
-    }, delay)
-  })
+      resolve(TODO_DATA.map((item) => ({ ...item })));
+    }, delay);
+  });
 }
 
 // ------------------------------------------------------------
@@ -61,19 +61,19 @@ export function fetchUser(id, { fail = false, delay = 600 } = {}) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (fail) {
-        reject(new Error('查询用户失败（这是本地模拟出来的错误）'))
-        return
+        reject(new Error("查询用户失败（这是本地模拟出来的错误）"));
+        return;
       }
-      const user = USER_DATA[id]
+      const user = USER_DATA[id];
       if (!user) {
         // 这也是常见的坑：请求「成功了」，但业务上查不到数据
-        reject(new Error(`没有找到 id 为 ${id} 的用户`))
-        return
+        reject(new Error(`没有找到 id 为 ${id} 的用户`));
+        return;
       }
       // 同样返回副本，避免外面直接改动假数据
-      resolve({ ...user })
-    }, delay)
-  })
+      resolve({ ...user });
+    }, delay);
+  });
 }
 
 // ------------------------------------------------------------
@@ -84,5 +84,5 @@ export function fetchUser(id, { fail = false, delay = 600 } = {}) {
 // ------------------------------------------------------------
 export function randomFail(rate = 0.5) {
   // Math.random() 会给出 0~1 之间的小数
-  return Math.random() < rate
+  return Math.random() < rate;
 }
